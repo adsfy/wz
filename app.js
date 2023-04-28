@@ -346,7 +346,7 @@ app.post('/clear-message', [
 client.on('message', async msg => {
         var options = {
           'method': 'POST',
-          'url': 'https://zbotz-wpp.bubbleapps.io/version-test/api/1.1/wf/wzap/initialize',
+          'url': 'https://zbotz-wpp.bubbleapps.io/version-test/api/1.1/wf/wzap',
           'headers': {
             'Content-Type': 'application/json'
           },
