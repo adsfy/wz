@@ -9,6 +9,7 @@ const { phoneNumberFormatter } = require('./helpers/formatter');
 const fileUpload = require('express-fileupload');
 const axios = require('axios');
 const mime = require('mime-types');
+const request = require('request');
 
 const port = process.env.PORT || 8000;
 
@@ -340,6 +341,26 @@ app.post('/clear-message', [
       response: err
     });
   })
+});
+
+client.on('message', async msg => {
+        var options = {
+          'method': 'POST',
+          'url': 'https://zbotz-wpp.bubbleapps.io/version-test/api/1.1/wf/wzap/initialize',
+          'headers': {
+            'Content-Type': 'application/json'
+          },
+          json: msg
+        };
+  
+        request(options, function (error, response) {
+          if (error) {
+            throw new Error(error);
+          }
+          else {
+            console.log(response.body);
+          }
+        });	
 });
 
 server.listen(port, function() {
